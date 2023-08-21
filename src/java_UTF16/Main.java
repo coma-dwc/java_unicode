@@ -10,7 +10,15 @@ public class Main {
 		String str = "Hello 世界!";
 		for(int i=0; i<str.length(); i++) {
 			char c = str.charAt(i);
-			System.out.println(c);
+			//コードポイントを表示
+			//char型のデータを[文字] [16進数] [10進数] のようにスペース区切りで表示
+			//16進数は4桁で0埋めして表示
+			int n = (int)c;
+			String s = new Character(c).toString();
+			String s10 = Integer.toString(n);
+			String s16 = String.format("%4s", Integer.toHexString(n)).replace(" ", "0").toUpperCase();
+//			System.out.println(c);
+			System.out.println(String.format("%s %s %s",  s, s16, s10));
 		}
 	}
 }
