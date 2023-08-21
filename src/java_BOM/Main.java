@@ -69,6 +69,14 @@ public class Main {
 		printBytes(dataWithBom);
 		String str2 = new String(dataWithBom, "UTF-8");
 		System.out.println(str2);
+		
+		
+		//元の文字列とUTF-8 with BOMから戻した文字列の
+		//equalsでの比較結果、それぞれの長さ(length)を比較
+		System.out.println("equals = " + str.equals(str2));
+		System.out.println("str.length = " + str.length());
+		System.out.println("str2.length = " + str2.length());
+		printBytes(str2.getBytes("UTF-8"));
 	}
 	//JavaではString#getBytesする際のエンコーディング名としてUTF-16BEまたはUTF-16LEを指定することで
 	//エンディアンを明示することが出来る(この場合はBOMはつかない)
