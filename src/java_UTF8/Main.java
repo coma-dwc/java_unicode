@@ -16,13 +16,29 @@ public class Main {
 		System.out.println();
 	}
 	
+//	public static void main(String[] args) throws Exception {
+//		String str = "Hello 世界と𩸽!";
+//		System.out.println(str);
+//		System.out.println("UTF-16");
+//		printBytes(str.getBytes("UTF-16"));
+//		//UTF-8バイト列の出力
+//		System.out.println("UTF-8");
+//		printBytes(str.getBytes("UTF-8"));
+//	}
+	
+	
 	public static void main(String[] args) throws Exception {
-		String str = "Hello 世界と𩸽!";
-		System.out.println(str);
-		System.out.println("UTF-16");
-		printBytes(str.getBytes("UTF-16"));
-		//UTF-8バイト列の出力
-		System.out.println("UTF-8");
-		printBytes(str.getBytes("UTF-8"));
+		String[] strs = {
+				" !\"#$%&'()*+,-./",
+				"0123456789:;<=>?",
+				"@ABCDEFGHIJKLMKO",
+				"PQRSTUYWXYZ[\\]^_",
+				"abcdefghijklmno",
+				"pqrstuvwxyz{|}~"
+		};
+		for(int i=0; i<strs.length; i++) {
+			System.out.println(strs[i]);
+			printBytes(strs[i].getBytes("UTF-8"));
+		}
 	}
 }
