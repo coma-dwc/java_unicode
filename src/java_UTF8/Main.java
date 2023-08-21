@@ -21,5 +21,8 @@ public class Main {
 		System.out.println(str);
 		System.out.println("UTF-16");
 		printBytes(str.getBytes("UTF-16"));
+		//UTF-8バイト列の出力
+		System.out.println("UTF-8");
+		printBytes(str.getBytes("UTF-8"));
 	}
 }
