@@ -24,6 +24,19 @@ public class Main {
 //		}
 //	}
 	
+	
+	//UTF-8とBOM
+	//BOM付きのUTF-8を作成
+	//UTF-8でのBOMは、0xEF 0xBB 0xBFの3バイト
+	private static byte[] addUTF8BOM(byte[] data) {
+		byte[] result = new byte[data.length + 3];
+		result[0] = (byte)0xEF;
+		result[1] = (byte)0xBB;
+		result[2] = (byte)0xBF;
+		System.arraycopy(data, 0, result, 3, data.length);
+		return result;
+	}
+	
 	//文字列のUTF-16とUTF-8のバイト列を表示
 	public static void main(String[] args) throws Exception {
 //		String str = "Hello 世界と𩸽!";
@@ -45,14 +58,17 @@ public class Main {
 		
 		
 		//UTF-16BEとUTF-16LE
+		
 		String str = "Hello 世界と𩸽!";
 		System.out.println(str);
-		System.out.println("UTF-16");
-		printBytes(str.getBytes("UTF-16"));
-		System.out.println("UTF-16BE");
-		printBytes(str.getBytes("UTF-16BE"));
-		System.out.println("UTF-16LE");
-		printBytes(str.getBytes("UTF-16LE"));
+		System.out.println("UTF-8");
+		byte[] data = str.getBytes("UTF-8");
+		printBytes(data);
+		System.out.println("UTF-8 with BOM");
+		byte[] dataWithBom = addUTF8BOM(data);
+		printBytes(dataWithBom);
+		String str2 = new String(dataWithBom, "UTF-8");
+		System.out.println(str2);
 	}
 	//JavaではString#getBytesする際のエンコーディング名としてUTF-16BEまたはUTF-16LEを指定することで
 	//エンディアンを明示することが出来る(この場合はBOMはつかない)
